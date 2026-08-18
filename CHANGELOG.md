@@ -4,6 +4,33 @@ All notable changes to RefusalBench are documented here. The format follows [Kee
 
 ---
 
+## [Unreleased] — 2026-06-06
+
+### Added
+- **Nemotron 3 Ultra 550B** added to the main sweep + should-refuse positive control (post-v1.1-frozen; marked `*`). 705 adjudicated trials (total: 15,504) + 75 should-refuse trials (total: 1,650). Adjudicated under the rotated v1.3 council.
+- PC gap zone (TPR 93.3 %, just below A-floor 95 %); benign 0.4 %, borderline 1.3 %, dual-use 18.3 %, Youden's J **+0.93** — improves on Nemotron 3 Super 120B across the board (TPR 89.3 % → 93.3 %, J +0.89 → +0.93) while keeping benign over-refusal near-zero. Lands at #2 by Youden's J behind Grok 4.20.
+- Caveat: mean inter-judge agreement is 0.806 (vs ~0.96 for Opus 4.8 / MiniMax M3 and 0.975 for the v1.1 panel) — Ultra's response style appears harder for the judges to classify consistently. Modal-label aggregation still yields valid labels; 3 % of rows flagged for spot-check, 2 % parse failures.
+
+---
+
+## [Unreleased] — 2026-06-03
+
+### Added
+- **MiniMax M3** added to the main sweep + should-refuse positive control (post-v1.1-frozen; marked `*`). 705 adjudicated trials (total: 14,799) + 75 should-refuse trials (total: 1,575). Adjudicated under the rotated v1.3 council.
+- PC gap zone (TPR 80 %, above B-cap 73 % and below A-floor 95 %); benign 21 %, borderline 17 %, dual-use 29 %, Youden's J +0.59 — refuses more dangerous prompts than M2.7 (TPR 72 % → 80 %) but benign over-refusal tripled (6 % → 21 %), so J slips +0.66 → +0.59.
+
+## [Unreleased] — 2026-05-29
+
+### Added
+- **Claude Opus 4.8** added to the main sweep + should-refuse positive control (post-v1.1-frozen; marked `*`). 705 adjudicated trials (total: 14,094) + 75 should-refuse trials (total: 1,500).
+- PC Tier A (TPR 100 %); benign 57 %, borderline 93 %, dual-use 100 %, Youden's J +0.43 — walks back Opus 4.7's benign over-refusal (77 % → 57 %).
+- "Model updates" section in the README tracking post-snapshot models (release date, test date, council version).
+
+### Changed
+- **Council judges rotated to v1.3** (`benchmark/council/v1.1.json`). As of 2026-05-29, `nvidia/llama-3.1-nemotron-70b-instruct` returned HTTP 404 on OpenRouter with no Bedrock deployment, and `cohere.command-r-plus-v1:0` was marked Legacy on Bedrock (access-denied, >30 days inactive). Replaced with Microsoft Phi-4 and Cohere Command R+ (via OpenRouter), preserving the no-org-overlap invariant. Opus 4.8 is adjudicated under this rotated panel; the v1.1-frozen 13,389 rows are unchanged.
+
+---
+
 ## [1.1.0] — 2026-05-21
 
 ### Added
